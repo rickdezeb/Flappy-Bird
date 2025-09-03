@@ -58,9 +58,9 @@
             // pipeBottom
             // 
             this.pipeBottom.Image = ((System.Drawing.Image)(resources.GetObject("pipeBottom.Image")));
-            this.pipeBottom.Location = new System.Drawing.Point(391, 380);
+            this.pipeBottom.Location = new System.Drawing.Point(359, 388);
             this.pipeBottom.Name = "pipeBottom";
-            this.pipeBottom.Size = new System.Drawing.Size(100, 209);
+            this.pipeBottom.Size = new System.Drawing.Size(99, 304);
             this.pipeBottom.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pipeBottom.TabIndex = 1;
             this.pipeBottom.TabStop = false;
@@ -68,9 +68,9 @@
             // pipeTop
             // 
             this.pipeTop.Image = ((System.Drawing.Image)(resources.GetObject("pipeTop.Image")));
-            this.pipeTop.Location = new System.Drawing.Point(491, -10);
+            this.pipeTop.Location = new System.Drawing.Point(495, -65);
             this.pipeTop.Name = "pipeTop";
-            this.pipeTop.Size = new System.Drawing.Size(100, 226);
+            this.pipeTop.Size = new System.Drawing.Size(100, 307);
             this.pipeTop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pipeTop.TabIndex = 2;
             this.pipeTop.TabStop = false;
@@ -136,7 +136,7 @@
             this.restartGameButton.UseVisualStyleBackColor = false;
             this.restartGameButton.Click += new System.EventHandler(this.restartGameButton_Click);
             // 
-            // game
+            // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -150,7 +150,7 @@
             this.Controls.Add(this.pipeTop);
             this.Controls.Add(this.pipeBottom);
             this.Controls.Add(this.flappyBird);
-            this.Name = "game";
+            this.Name = "Game";
             this.Text = "Flappy Bird game by Rick";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gamekeyisdown);
             ((System.ComponentModel.ISupportInitialize)(this.flappyBird)).EndInit();

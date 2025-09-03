@@ -7,8 +7,12 @@ namespace FlappyBirdWindowsForms
     public partial class Game : Form
     {
         private const int PipeBottomResetX = 500;
-        private const int PipeTopResetX = 800;
         private const int BirdStartTop = 126;
+        private Random rnd = new Random();
+        private const int PipeGap = 150;
+        private const int PipeMinY = 50;
+        private const int PipeMaxY = 350;
+        private int pipeX = PipeBottomResetX;
         private Image flappyBirdOriginalImage;
         private GameLogic logic;
 
@@ -28,24 +32,22 @@ namespace FlappyBirdWindowsForms
             flappyBird.Top += (int)logic.BirdVelocity;
             flappyBird.Image = RotateImage(flappyBirdOriginalImage, logic.BirdRotation);
 
-            pipeBottom.Left -= logic.PipeSpeed;
-            pipeTop.Left -= logic.PipeSpeed;
+            pipeX -= logic.PipeSpeed;
+            pipeBottom.Left = pipeX;
+            pipeTop.Left = pipeX;
             scoreText.Text = $"Score: {logic.Score}";
             ground.Left -= logic.PipeSpeed;
 
             if (ground.Left <= -ground.Width + this.ClientSize.Width)
                 ground.Left = 0;
 
-            if (pipeBottom.Left < -150)
+            if (pipeX < -150)
             {
-                pipeBottom.Left = PipeBottomResetX;
+                pipeX = PipeBottomResetX;
+                SetRandomPipeHeights();
                 logic.PipePassed();
             }
-            if (pipeTop.Left < -180)
-            {
-                pipeTop.Left = PipeTopResetX;
-                logic.PipePassed();
-            }
+
             if (flappyBird.Bounds.IntersectsWith(pipeBottom.Bounds) ||
                 flappyBird.Bounds.IntersectsWith(pipeTop.Bounds) ||
                 flappyBird.Bounds.IntersectsWith(ground.Bounds) ||
@@ -55,6 +57,17 @@ namespace FlappyBirdWindowsForms
             }
         }
 
+        private void SetRandomPipeHeights()
+        {
+            int minPipeLength = 50;
+            int maxGapY = ground.Top - PipeGap - minPipeLength;
+            int minGapY = minPipeLength;
+
+            int gapY = rnd.Next(minGapY, maxGapY);
+
+            pipeTop.Top = gapY - pipeTop.Height;
+            pipeBottom.Top = gapY + PipeGap;
+        }
         private void gamekeyisdown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Space)
@@ -86,8 +99,9 @@ namespace FlappyBirdWindowsForms
         private void resetGame()
         {
             logic.Reset();
-            pipeBottom.Left = PipeBottomResetX;
-            pipeTop.Left = PipeTopResetX;
+            pipeX = PipeBottomResetX;
+            pipeBottom.Left = pipeX;
+            pipeTop.Left = pipeX;
             flappyBird.Top = BirdStartTop;
             flappyBird.Image = flappyBirdOriginalImage;
             gameOverText.Visible = false;
