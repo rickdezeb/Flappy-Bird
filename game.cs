@@ -10,8 +10,6 @@ namespace FlappyBirdWindowsForms
         private const int BirdStartTop = 126;
         private Random rnd = new Random();
         private const int PipeGap = 150;
-        private const int PipeMinY = 50;
-        private const int PipeMaxY = 350;
         private int pipeX = PipeBottomResetX;
         private Image flappyBirdOriginalImage;
         private GameLogic logic;

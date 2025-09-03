@@ -117,10 +117,11 @@
             // 
             this.gameOverText.AutoSize = true;
             this.gameOverText.BackColor = System.Drawing.Color.Transparent;
+            this.gameOverText.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.gameOverText.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gameOverText.Location = new System.Drawing.Point(151, 245);
             this.gameOverText.Name = "gameOverText";
-            this.gameOverText.Size = new System.Drawing.Size(370, 69);
+            this.gameOverText.Size = new System.Drawing.Size(372, 71);
             this.gameOverText.TabIndex = 7;
             this.gameOverText.Text = "Game over!!";
             // 
