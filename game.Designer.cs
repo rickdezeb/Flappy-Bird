@@ -153,7 +153,6 @@
             this.Name = "game";
             this.Text = "Flappy Bird game by Rick";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gamekeyisdown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.gamekeyisup);
             ((System.ComponentModel.ISupportInitialize)(this.flappyBird)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pipeBottom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pipeTop)).EndInit();

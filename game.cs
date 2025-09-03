@@ -1,50 +1,50 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FlappyBirdWindowsForms
 {
     public partial class Game : Form
     {
-        int pipeSpeed = 8;
-        int gravity = 7;
-        int score = 0;
-        int highScore = 0;
+        private const int PipeBottomResetX = 500;
+        private const int PipeTopResetX = 800;
+        private const int BirdStartTop = 126;
+        private Image flappyBirdOriginalImage;
+        private GameLogic logic;
+
         public Game()
         {
             InitializeComponent();
+            flappyBirdOriginalImage = flappyBird.Image;
+            logic = new GameLogic();
             this.KeyDown += new KeyEventHandler(gamekeyisdown);
-            this.KeyUp += new KeyEventHandler(gamekeyisup);
             this.KeyPreview = true;
             resetGame();
         }
+
         private void gameTimerEvent(object sender, EventArgs e)
         {
-            flappyBird.Top += gravity;
-            pipeBottom.Left -= pipeSpeed;
-            pipeTop.Left -= pipeSpeed;
-            scoreText.Text = "Score: " + score;
-            ground.Left -= pipeSpeed;
+            logic.UpdateBird();
+            flappyBird.Top += (int)logic.BirdVelocity;
+            flappyBird.Image = RotateImage(flappyBirdOriginalImage, logic.BirdRotation);
+
+            pipeBottom.Left -= logic.PipeSpeed;
+            pipeTop.Left -= logic.PipeSpeed;
+            scoreText.Text = $"Score: {logic.Score}";
+            ground.Left -= logic.PipeSpeed;
 
             if (ground.Left <= -ground.Width + this.ClientSize.Width)
-            {
                 ground.Left = 0;
-            }
+
             if (pipeBottom.Left < -150)
             {
-                pipeBottom.Left = 500;
-                score++;
+                pipeBottom.Left = PipeBottomResetX;
+                logic.PipePassed();
             }
             if (pipeTop.Left < -180)
             {
-                pipeTop.Left = 600;
-                score++;
+                pipeTop.Left = PipeTopResetX;
+                logic.PipePassed();
             }
             if (flappyBird.Bounds.IntersectsWith(pipeBottom.Bounds) ||
                 flappyBird.Bounds.IntersectsWith(pipeTop.Bounds) ||
@@ -53,51 +53,51 @@ namespace FlappyBirdWindowsForms
             {
                 endGame();
             }
-
-            pipeSpeed = 8 + (score / 5);
         }
 
         private void gamekeyisdown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Space)
-            {
-                gravity = -7;
-            }
-
-        }
-
-        private void gamekeyisup(object sender, KeyEventArgs e)
-        {
             if (e.KeyCode == Keys.Space)
-            {
-                gravity = 7;
-            }
+                logic.Jump();
         }
+
         private void endGame()
         {
             gameTimer.Stop();
             gameOverText.Visible = true;
             restartGameButton.Visible = true;
-
-            if (score > highScore)
-            {
-                highScore = score;
-                highScoreText.Text = "High Score: " + highScore;
-            }
+            logic.UpdateHighScore();
+            highScoreText.Text = $"High Score: {logic.HighScore}";
         }
+
+        private Image RotateImage(Image image, float angle)
+        {
+            Bitmap rotatedBmp = new Bitmap(image.Width, image.Height);
+            using (Graphics g = Graphics.FromImage(rotatedBmp))
+            {
+                g.TranslateTransform((float)image.Width / 2, (float)image.Height / 2);
+                g.RotateTransform(angle);
+                g.TranslateTransform(-(float)image.Width / 2, -(float)image.Height / 2);
+                g.DrawImage(image, new Point(0, 0));
+            }
+            return rotatedBmp;
+        }
+
         private void resetGame()
         {
-            score = 0;
-            pipeBottom.Left = 500;
-            pipeTop.Left = 800;
-            flappyBird.Top = 126;
+            logic.Reset();
+            pipeBottom.Left = PipeBottomResetX;
+            pipeTop.Left = PipeTopResetX;
+            flappyBird.Top = BirdStartTop;
+            flappyBird.Image = flappyBirdOriginalImage;
             gameOverText.Visible = false;
             restartGameButton.Visible = false;
             gameTimer.Start();
         }
+
         private void restartGameButton_Click(object sender, EventArgs e)
         {
-            if (gameTimer.Enabled == false)
+            if (!gameTimer.Enabled)
                 resetGame();
         }
     }
