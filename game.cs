@@ -10,13 +10,13 @@ using System.Windows.Forms;
 
 namespace FlappyBirdWindowsForms
 {
-    public partial class game : Form
+    public partial class Game : Form
     {
         int pipeSpeed = 8;
         int gravity = 7;
         int score = 0;
         int highScore = 0;
-        public game()
+        public Game()
         {
             InitializeComponent();
             this.KeyDown += new KeyEventHandler(gamekeyisdown);

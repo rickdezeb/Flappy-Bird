@@ -1,6 +1,6 @@
 ﻿namespace FlappyBirdWindowsForms
 {
-    partial class game
+    partial class Game
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(game));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Game));
             this.flappyBird = new System.Windows.Forms.PictureBox();
             this.pipeBottom = new System.Windows.Forms.PictureBox();
             this.pipeTop = new System.Windows.Forms.PictureBox();
@@ -107,7 +107,7 @@
             this.highScoreText.AutoSize = true;
             this.highScoreText.BackColor = System.Drawing.Color.NavajoWhite;
             this.highScoreText.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.highScoreText.Location = new System.Drawing.Point(444, 592);
+            this.highScoreText.Location = new System.Drawing.Point(428, 592);
             this.highScoreText.Name = "highScoreText";
             this.highScoreText.Size = new System.Drawing.Size(193, 32);
             this.highScoreText.TabIndex = 6;
