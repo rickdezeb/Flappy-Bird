@@ -13,6 +13,12 @@ namespace FlappyBirdWindowsForms
         private int pipeX = PipeBottomResetX;
         private Image flappyBirdOriginalImage;
         private GameLogic logic;
+        private Timer discoTimer;
+        private int discoColorIndex = 0;
+        private Color[] discoColors = new Color[]
+        {
+        Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Blue, Color.Indigo, Color.Violet
+        };
 
         public Game()
         {
@@ -21,6 +27,12 @@ namespace FlappyBirdWindowsForms
             logic = new GameLogic();
             this.KeyDown += new KeyEventHandler(gamekeyisdown);
             this.KeyPreview = true;
+            hideGame();
+        }
+
+        private void startButton_Click(object sender, EventArgs e)
+        {
+            showGame();
             resetGame();
         }
 
@@ -107,6 +119,28 @@ namespace FlappyBirdWindowsForms
             gameTimer.Start();
         }
 
+        private void showGame()
+        {
+            startPanel.Visible = false;
+            this.AcceptButton = null;
+            this.Focus();
+            discoTimer.Stop();
+        }
+
+        private void hideGame()
+        {
+            discoTimer = new Timer();
+            discoTimer.Interval = 300;
+            discoTimer.Tick += DiscoTimer_Tick;
+            discoTimer.Start();
+            startPanel.Visible = true;
+
+        }
+        private void DiscoTimer_Tick(object sender, EventArgs e)
+        {
+            welcomeText.ForeColor = discoColors[discoColorIndex];
+            discoColorIndex = (discoColorIndex + 1) % discoColors.Length;
+        }
         private void restartGameButton_Click(object sender, EventArgs e)
         {
             if (!gameTimer.Enabled)

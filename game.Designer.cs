@@ -39,10 +39,16 @@
             this.highScoreText = new System.Windows.Forms.Label();
             this.gameOverText = new System.Windows.Forms.Label();
             this.restartGameButton = new System.Windows.Forms.Button();
+            this.startPanel = new System.Windows.Forms.Panel();
+            this.startButton = new System.Windows.Forms.Button();
+            this.welcomeText = new System.Windows.Forms.Label();
+            this.welcomeImage = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.flappyBird)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pipeBottom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pipeTop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ground)).BeginInit();
+            this.startPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.welcomeImage)).BeginInit();
             this.SuspendLayout();
             // 
             // flappyBird
@@ -137,12 +143,55 @@
             this.restartGameButton.UseVisualStyleBackColor = false;
             this.restartGameButton.Click += new System.EventHandler(this.restartGameButton_Click);
             // 
+            // startPanel
+            // 
+            this.startPanel.Controls.Add(this.welcomeImage);
+            this.startPanel.Controls.Add(this.welcomeText);
+            this.startPanel.Controls.Add(this.startButton);
+            this.startPanel.Location = new System.Drawing.Point(-13, -3);
+            this.startPanel.Name = "startPanel";
+            this.startPanel.Size = new System.Drawing.Size(678, 671);
+            this.startPanel.TabIndex = 9;
+            // 
+            // startButton
+            // 
+            this.startButton.BackColor = System.Drawing.Color.Red;
+            this.startButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startButton.Location = new System.Drawing.Point(192, 382);
+            this.startButton.Name = "startButton";
+            this.startButton.Size = new System.Drawing.Size(242, 65);
+            this.startButton.TabIndex = 0;
+            this.startButton.Text = "Start Game";
+            this.startButton.UseVisualStyleBackColor = false;
+            this.startButton.Click += new System.EventHandler(this.startButton_Click);
+            // 
+            // welcomeText
+            // 
+            this.welcomeText.AutoSize = true;
+            this.welcomeText.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.welcomeText.Location = new System.Drawing.Point(64, 143);
+            this.welcomeText.Name = "welcomeText";
+            this.welcomeText.Size = new System.Drawing.Size(544, 52);
+            this.welcomeText.TabIndex = 1;
+            this.welcomeText.Text = "Flappy Bird made by Rick";
+            // 
+            // welcomeImage
+            // 
+            this.welcomeImage.Image = ((System.Drawing.Image)(resources.GetObject("welcomeImage.Image")));
+            this.welcomeImage.Location = new System.Drawing.Point(250, 248);
+            this.welcomeImage.Name = "welcomeImage";
+            this.welcomeImage.Size = new System.Drawing.Size(140, 107);
+            this.welcomeImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.welcomeImage.TabIndex = 2;
+            this.welcomeImage.TabStop = false;
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Aqua;
             this.ClientSize = new System.Drawing.Size(649, 658);
+            this.Controls.Add(this.startPanel);
             this.Controls.Add(this.restartGameButton);
             this.Controls.Add(this.gameOverText);
             this.Controls.Add(this.highScoreText);
@@ -151,6 +200,7 @@
             this.Controls.Add(this.pipeTop);
             this.Controls.Add(this.pipeBottom);
             this.Controls.Add(this.flappyBird);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Game";
             this.Text = "Flappy Bird game by Rick";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gamekeyisdown);
@@ -158,6 +208,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pipeBottom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pipeTop)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ground)).EndInit();
+            this.startPanel.ResumeLayout(false);
+            this.startPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.welcomeImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -174,6 +227,10 @@
         private System.Windows.Forms.Label highScoreText;
         private System.Windows.Forms.Label gameOverText;
         private System.Windows.Forms.Button restartGameButton;
+        private System.Windows.Forms.Panel startPanel;
+        private System.Windows.Forms.Button startButton;
+        private System.Windows.Forms.Label welcomeText;
+        private System.Windows.Forms.PictureBox welcomeImage;
     }
 }
 
